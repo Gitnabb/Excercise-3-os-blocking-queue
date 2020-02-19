@@ -19,9 +19,7 @@ public class MessageQueue implements Channel {
 
     @Override
     public synchronized void send(Object item) throws InterruptedException {
-        // TODO - block if the queue is full
         // If the queue is full, wait for queue space.
-
         while (this.queue.size() == this.size) {
             wait();
         }
@@ -32,10 +30,8 @@ public class MessageQueue implements Channel {
         }
     }
 
-    // implements a nonblocking receive
     @Override
     public synchronized Object receive() throws InterruptedException {
-        // TODO - block if the queue is empty, and always return the first 
         // element in the queue
             while(queue.isEmpty()){
                 wait();
